@@ -1,0 +1,86 @@
+<html>
+<head>
+	<title>Essay Writer Tool</title>
+	<style>
+		body {
+			font-size: 12px;
+			font-family: Arial, Helvetica, sans-serif;
+			line-height: 20px;
+			color: #333333;
+		}
+
+		a {
+			color: #333333;
+			text-decoration: none;
+		}
+
+		.overview {
+			background: #FFEC9D;
+			padding: 10px;
+			width: 90%;
+			border: 1px solid #CCCCCC;
+		}
+
+		.originalTextareaInfo {
+			font-size: 12px;
+			color: #000000;
+			font-family: Tahoma, sans-serif;
+			text-align: right
+		}
+
+		.warningTextareaInfo {
+			font-size: 12px;
+			color: #FF0000;
+			font-family: Tahoma, sans-serif;
+			text-align: right
+		}
+
+		#showData {
+			height: 70px;
+			width: 200px;
+			border: 1px solid #CCCCCC;
+			padding: 10px;
+			margin: 10px;
+		}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+	<script src="./jquery.textareaCounter.plugin.js" type="text/javascript"></script>
+	<script src="./jquery.timer.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var info;
+		$(function() {
+			var options = {
+				'maxCharacterSize': -2,
+				'originalStyle': 'originalTextareaInfo',
+				'warningStyle' : 'warningTextareaInfo',
+				'warningNumber': 40
+			};
+			$('#testTextarea').textareaCount(options);
+
+			window.timeBomb1 = $('#timerHolder1').find('.timerContainer').timer({direction:'cw',format:'{m}:{s}'})
+		});
+	</script>
+</head>
+<body>
+	<h2>Essay Writer</h2>
+	<table>
+		<tr>
+			<td>
+			Question:<br />
+				<textarea  spellcheck="false" cols="70" rows="10"></textarea><br />
+				Essay:<br />
+				<textarea id="testTextarea" spellcheck="false" cols="70" rows="30"></textarea>
+			</td>
+			<td valign="top">
+				<div>
+					<button onclick="$('#testTextarea').attr('spellcheck',true)">Activate Spell Checker</button>
+					<button onclick="$('#testTextarea').attr('spellcheck',false)">Deactivate Spell Checker</button>
+				</div>
+				<br /><br />
+				<div id="timerHolder1" style="padding:0px 20px 30px 20px;"><input type="button" onclick="timeBomb1.startTimer({stopVal:30});" value="Start!"><input type="button" onclick="timeBomb1.stopTimer();" value="Stop!"><input type="button" onclick="timeBomb1.setTimerOptions({format:$('#timerHolder1').find('.timerFormat').val(),startVal:$('#timerHolder1').find('.timerStart').val(),stopVal:$('#timerHolder1').find('.timerStop').val()});timeBomb1.resetTimer();" value="Reset!"><div style="margin: 6px;"><span class="timerContainer" style="border: 2px solid #bd674c;font-size: 24px; font-weight: bold;padding: 4px;">00:00</span></div></div>
+			</td>
+		</tr>
+
+	</table>
+</body>
+</html>
